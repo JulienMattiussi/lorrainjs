@@ -39,4 +39,4 @@ console.log = function () {
   orig.apply(console, msgs);
 };
 
-export default orig;
+export default { orig };
