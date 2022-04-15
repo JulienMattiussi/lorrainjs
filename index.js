@@ -48,16 +48,6 @@ const translate = (text, config = DEFAULT_CONFIG) => {
   return translatedText;
 };
 
-const buildInit = (functionToOverride, config) => {
-  var msgs = [];
-  while (arguments.length) {
-    const argument = [].shift.call(arguments);
-    msgs.push(translate(argument, config));
-  }
-
-  functionToOverride.apply(console, msgs);
-};
-
 const initLog = (config = DEFAULT_CONFIG) => {
   console.log = function () {
     var msgs = [];
@@ -71,14 +61,26 @@ const initLog = (config = DEFAULT_CONFIG) => {
 };
 
 const initWarn = (config = DEFAULT_CONFIG) => {
-  console.log = function () {
-    buildInit(originalWarn, config);
+  console.warn = function () {
+    var msgs = [];
+    while (arguments.length) {
+      const argument = [].shift.call(arguments);
+      msgs.push(translate(argument, config));
+    }
+
+    originalWarn.apply(console, msgs);
   };
 };
 
 const initError = (config = DEFAULT_CONFIG) => {
-  console.log = function () {
-    buildInit(originalError, config);
+  console.error = function () {
+    var msgs = [];
+    while (arguments.length) {
+      const argument = [].shift.call(arguments);
+      msgs.push(translate(argument, config));
+    }
+
+    originalError.apply(console, msgs);
   };
 };
 
