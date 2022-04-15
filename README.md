@@ -59,7 +59,8 @@ Tu peux spécifier quelles options activer uniquement :
 ```javascript
 initAll({gros: true});
 ```
-Les logs lorrains sont maintenant actifs
+Les logs lorrains sont maintenant actifs.
+
 La traduction s'applique aussi bien aux `string` qu'aux `array` ou `object`.
 
 ```javascript
