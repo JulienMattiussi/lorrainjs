@@ -94,35 +94,35 @@ const config = {
 ## LES FONCTIONS DISPONIBLES GROS:
 - `initAll(config);`
 
-    //Initialise tout le loggueur. Les fonctions natives `console.log`, `console.warn` et `console.error` seront trôduites automatiquement.
+    Initialise tout le loggueur. Les fonctions nôtives `console.log`, `console.warn` et `console.error` seront trôduites automatiquement.
 
 - `initLog(config);`
 
-    //Initialise uniquement lô fonction `console.log`.
+    Initialise uniquement lô fonction `console.log`.
 
 - `initWarn(config);`
 
-    //Initialise uniquement ô fonction `console.warn`.
+    Initialise uniquement ô fonction `console.warn`.
 
 - `initError(config);`
 
-    //Initialise uniquement lô fonction `console.error`.
+    Initialise uniquement lô fonction `console.error`.
 
 - `translate(config);`
 
-    //Permet que tu traduise un texte manuellement sans impliquer la console.
+    Permet que tu traduise un texte manuellement sans impliquer la console.
 
 - `originalLog();`
 
-    //Donne un accès à la fonction `console.log` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initLog()` ou `initAll()`.
+    Donne un accès à lô fonction `console.log` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initLog()` ou `initAll()`.
 
 - `originalWarn();`
 
-    //Donne un accès à la fonction `console.warn` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initWarn()` ou `initAll()`.
+    Donne un accès à lô fonction `console.warn` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initWarn()` ou `initAll()`.
 
 - `originalError();`
 
-    //Donne un accès à la fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
+    Donne un accès à lô fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
 
 
 ## QUELQUES EXAMPLES TU VOIS GROS:
