@@ -138,7 +138,7 @@ const config = {
 
   Donne un accès à lô fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
 
-## QUELQUES EXAMPLES TU VOIS GROS, ENFIN SI T'ES PAS BEÛLOU :
+## QUELQUES EXEMPLES TU VOIS GROS, ENFIN SI T'ES PAS BEÛLOU :
 
 ```javascript
 import lorrainjs from "lorrainjs";
