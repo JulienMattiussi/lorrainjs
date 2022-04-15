@@ -1,4 +1,10 @@
-function showGros(arg) {
+const DEFAULT_CONFIG = {
+  gros: true,
+  le: true,
+  mirabelle: true,
+};
+
+function setGros(arg) {
   const gros = " gros";
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
@@ -12,7 +18,7 @@ function showGros(arg) {
 
 const regexCapital = /\b[A-Z][a-zA-Z]*\b/;
 
-function showLe(arg) {
+function setLe(arg) {
   const le = "le ";
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
@@ -26,17 +32,56 @@ function showLe(arg) {
   return arg.replace(regexCapital, `${le}$&`);
 }
 
-var orig = console.log;
+const originalLog = console.log;
+const originalWarn = console.warn;
+const originalError = console.error;
 
-console.log = function () {
-  var msgs = [];
-
-  while (arguments.length) {
-    const argument = [].shift.call(arguments);
-    msgs.push(showLe(showGros(argument)));
+const translate = (text, config = DEFAULT_CONFIG) => {
+  let translatedText = text;
+  if (config.gros) {
+    translatedText = setGros(text);
+  }
+  if (config.le) {
+    translatedText = setLe(text);
   }
 
-  orig.apply(console, msgs);
+  return translatedText;
 };
 
-export default { orig };
+const buildInit = (functionToOverride, config) => {
+  var msgs = [];
+  while (arguments.length) {
+    const argument = [].shift.call(arguments);
+    msgs.push(translate(argument, config));
+  }
+
+  functionToOverride.apply(console, msgs);
+};
+
+const initLog = (config = DEFAULT_CONFIG) => {
+  console.log = function () {
+    buildInit(originalLog, config);
+  };
+};
+
+const initWarn = (config = DEFAULT_CONFIG) => {
+  console.log = function () {
+    buildInit(originalWarn, config);
+  };
+};
+
+const initError = (config = DEFAULT_CONFIG) => {
+  console.log = function () {
+    buildInit(originalError, config);
+  };
+};
+
+export default {
+  originalLog,
+  originalWarn,
+  originalError,
+  initLog,
+  initWarn,
+  initError,
+  translate,
+};
