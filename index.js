@@ -39,10 +39,10 @@ const originalError = console.error;
 const translate = (text, config = DEFAULT_CONFIG) => {
   let translatedText = text;
   if (config.gros) {
-    translatedText = setGros(text);
+    translatedText = setGros(translatedText);
   }
   if (config.le) {
-    translatedText = setLe(text);
+    translatedText = setLe(translatedText);
   }
 
   return translatedText;
@@ -60,7 +60,13 @@ const buildInit = (functionToOverride, config) => {
 
 const initLog = (config = DEFAULT_CONFIG) => {
   console.log = function () {
-    buildInit(originalLog, config);
+    var msgs = [];
+    while (arguments.length) {
+      const argument = [].shift.call(arguments);
+      msgs.push(translate(argument, config));
+    }
+
+    originalLog.apply(console, msgs);
   };
 };
 
