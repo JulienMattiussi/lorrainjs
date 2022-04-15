@@ -27,7 +27,7 @@ yarn add lorrainjs
 ```
 ## COMMENT L'UTILISER GROS
 
-### Importe à la source de ton projet :
+### Importe à lô source de ton projet :
 
 #### Soit au détail :
 
@@ -41,14 +41,14 @@ import { initLog, initWarn } from 'lorrainjs';
 #### Soit en gros :
 
 ```javascript
-const { initLog, initWarn } = require('lorrainjs');
+const lorrainjs = require('lorrainjs');
 ```
 
 ```javascript
-import { initLog, initWarn } from 'lorrainjs';
+import lorrainjs from 'lorrainjs';
 ```
 
-### Puis, initialise le loggueur lorrain :
+### Puis, initiôlise le loggueur lorrain :
 
 ```javascript
 initAll();
@@ -94,19 +94,19 @@ const config = {
 ## LES FONCTIONS DISPONIBLES GROS:
 - `initAll(config);`
 
-    //Initialise tout le loggueur. Les fonctions natives `console.log`, `console.warn` et `console.error` seront traduites automatiquement.
+    //Initialise tout le loggueur. Les fonctions natives `console.log`, `console.warn` et `console.error` seront trôduites automatiquement.
 
 - `initLog(config);`
 
-    //Initialise uniquement la fonction `console.log`.
+    //Initialise uniquement lô fonction `console.log`.
 
 - `initWarn(config);`
 
-    //Initialise uniquement la fonction `console.warn`.
+    //Initialise uniquement ô fonction `console.warn`.
 
 - `initError(config);`
 
-    //Initialise uniquement la fonction `console.error`.
+    //Initialise uniquement lô fonction `console.error`.
 
 - `translate(config);`
 
@@ -114,15 +114,15 @@ const config = {
 
 - `originalLog();`
 
-    //Donne un accès à la fonction `console.log` d'origine (avant traduction) pour permettre de réaliser des logs non traduits même après que tu aie exécuté `initLog()` ou `initAll()`.
+    //Donne un accès à la fonction `console.log` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initLog()` ou `initAll()`.
 
 - `originalWarn();`
 
-    //Donne un accès à la fonction `console.warn` d'origine (avant traduction) pour permettre de réaliser des logs non traduits même après que tu aie exécuté `initWarn()` ou `initAll()`.
+    //Donne un accès à la fonction `console.warn` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initWarn()` ou `initAll()`.
 
 - `originalError();`
 
-    //Donne un accès à la fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non traduits même après que tu aie exécuté `initError()` ou `initAll()`.
+    //Donne un accès à la fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
 
 
 ## QUELQUES EXAMPLES TU VOIS GROS:
