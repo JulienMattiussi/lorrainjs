@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "description": "Logger for Lorraine people",
   "main": "index.js",
-  "author": "YavaDeus",
+  "author": "YavaDeus, Aherbeth",
   "license": "MIT",
   "private": true,
-  "repository": "git@github.com:JulienMattiussi/lorrainjs.git"
+  "repository": "git@github.com:JulienMattiussi/lorrainjs.git",
+  "type": "module",
+  "scripts": {
+    "example": "node ./examples/index.js"
+  }
 }
