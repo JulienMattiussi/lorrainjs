@@ -6,7 +6,7 @@ export const default_config = {
     o: true,
   },
   le: "le ",
-  la: "la",
+  la: "la ",
   fruit: "mirabelle",
   suffix: " gros",
   a: "ô",
