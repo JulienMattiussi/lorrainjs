@@ -54,7 +54,8 @@ export const setGros = (arg) => {
 
 export const setO = (arg) => {
   const toReplaceA = default_config.a;
-  const regexpToFindA = new RegExp(/[aAâ]/, "g");
+  const fruitToNotReplace = default_config.fruit;
+  const regexpToFindA = new RegExp(/(?<=[^euioy ])(([aAâ])(?=[^beyuio]))/, "g");
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
     Object.keys(newObject).forEach((key) => {
@@ -64,7 +65,7 @@ export const setO = (arg) => {
     });
     return newObject;
   }
-  if (typeof arg === "string") {
+  if (typeof arg === "string" && arg) {
     arg = arg.replace(regexpToFindA, toReplaceA);
     return arg;
   }

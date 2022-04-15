@@ -17,11 +17,11 @@ export const translate = (text, config = DEFAULT_CONFIG) => {
   if (config.le) {
     translatedText = setLe(translatedText);
   }
-  if (config.o) {
-    translatedText = setO(translatedText);
-  }
   if (config.mirabelle) {
     translatedText = setMirabelle(translatedText);
+  }
+  if (config.o) {
+    translatedText = setO(translatedText);
   }
 
   return translatedText;
