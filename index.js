@@ -6,11 +6,11 @@ const DEFAULT_CONFIG = {
   mirabelle: true,
 };
 
-const originalLog = console.log;
-const originalWarn = console.warn;
-const originalError = console.error;
+export const originalLog = console.log;
+export const originalWarn = console.warn;
+export const originalError = console.error;
 
-const translate = (text, config = DEFAULT_CONFIG) => {
+export const translate = (text, config = DEFAULT_CONFIG) => {
   let translatedText = text;
   if (config.gros) {
     translatedText = setGros(translatedText);
@@ -37,7 +37,7 @@ export const initLog = (config = DEFAULT_CONFIG) => {
   };
 };
 
-const initWarn = (config = DEFAULT_CONFIG) => {
+export const initWarn = (config = DEFAULT_CONFIG) => {
   console.warn = function () {
     var msgs = [];
     while (arguments.length) {
@@ -49,7 +49,7 @@ const initWarn = (config = DEFAULT_CONFIG) => {
   };
 };
 
-const initError = (config = DEFAULT_CONFIG) => {
+export const initError = (config = DEFAULT_CONFIG) => {
   console.error = function () {
     var msgs = [];
     while (arguments.length) {
@@ -61,10 +61,17 @@ const initError = (config = DEFAULT_CONFIG) => {
   };
 };
 
+export const initAll = (config = DEFAULT_CONFIG) => {
+  initLog(config);
+  initWarn(config);
+  initError(config);
+};
+
 export default {
   originalLog,
   originalWarn,
   originalError,
+  initAll,
   initLog,
   initWarn,
   initError,
