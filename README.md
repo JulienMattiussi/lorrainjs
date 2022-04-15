@@ -166,5 +166,4 @@ initWarn(configWarn);
 console.log('Francis mange une pomme');     // Francis mange une mirabelle gros
 console.warn('Francis mange une pomme');         // Francis mange une mirabelle
 console.error('Francis mange une pomme');        // Francis mange une pomme
-}
 ```
