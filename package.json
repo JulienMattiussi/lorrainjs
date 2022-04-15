@@ -16,7 +16,7 @@
     }
   ],
   "license": "MIT",
-  "private": true,
+  "private": false,
   "homepage": "https://github.com/JulienMattiussi/lorrainjs",
   "repository": {
     "type": "git",
