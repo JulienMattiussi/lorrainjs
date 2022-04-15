@@ -18,7 +18,7 @@ const translate = (text, config = DEFAULT_CONFIG) => {
   if (config.le) {
     translatedText = setLe(translatedText);
   }
-  if (config.fruit) {
+  if (config.mirabelle) {
     translatedText = setMirabelle(translatedText);
   }
 

@@ -1,6 +1,26 @@
-import * as fruits from "./assets/fruits.js";
+import fruits from "./assets/fruits.js";
 
-export const setMirabelle = (arg) => {};
+export const setMirabelle = (arg) => {
+  if (typeof arg === "object") {
+    const newObject = Object.assign({}, arg);
+    Object.keys(newObject).forEach((key) => {
+      if (typeof newObject[key] === "string") {
+        fruits.map((fruit) => {
+          const fruitRegExp = new RegExp(fruit, "ig");
+          newObject[key] = newObject[key].replace(fruitRegExp, "mirabelle");
+        });
+      }
+    });
+    return newObject;
+  }
+  if (typeof arg === "string") {
+    fruits.map((fruit) => {
+      const fruitRegExp = new RegExp(fruit, "ig");
+      arg = arg.replace(fruitRegExp, "mirabelle");
+    });
+  }
+  return arg;
+};
 
 const regexCapital = /\b[A-Z][a-zA-Z]*\b/;
 
