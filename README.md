@@ -138,7 +138,7 @@ const config = {
 
   Donne un accès à lô fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
 
-## QUELQUES EXAMPLES TU VOIS GROS:
+## QUELQUES EXAMPLES TU VOIS GROS, ENFIN SI T'ES PAS BEÛLOU :
 
 ```javascript
 import lorrainjs from "lorrainjs";
@@ -182,4 +182,4 @@ console.error("Francis mange une pomme"); // Francis mange une pomme
 
 ## ISSUES
 
-Et pis si tu trouves des trucs chounts, bha t'ouvres une issue, t'unquiète paupiette, t'auras pas la chouffe.
+Et pis si tu trouves des trucs chounts, bha t'ouvres une issue, t'inquiète paupiette, t'auras pas la chouffe.
