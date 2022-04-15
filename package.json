@@ -3,11 +3,33 @@
   "version": "0.0.1",
   "description": "Logger for Lorraine people",
   "main": "index.js",
-  "author": "YavaDeus, Aherbeth",
+  "author": {
+    "name": "YavaDeus",
+    "email": "julienm@marmelab.com",
+    "url": "https://github.com/JulienMattiussi"
+  },
+  "contributors": [
+    {
+      "name": "Aherbeth",
+      "email": "alexandre@marmelab.com",
+      "url": "https://github.com/Aherbeth"
+    }
+  ],
   "license": "MIT",
   "private": true,
-  "repository": "git@github.com:JulienMattiussi/lorrainjs.git",
+  "homepage": "https://github.com/JulienMattiussi/lorrainjs",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JulienMattiussi/lorrainjs.git"
+  },
   "type": "module",
+  "keywords": [
+    "lorraine",
+    "lorrains",
+    "lorrain",
+    "gros",
+    "grosse"
+  ],
   "scripts": {
     "example": "node ./examples/index.js"
   }
