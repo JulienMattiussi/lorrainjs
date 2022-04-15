@@ -1,9 +1,8 @@
-import { setLe, setGros, setMirabelle } from "./translate.js";
+import { setLe, setGros, setMirabelle, setO } from "./translate.js";
+import { default_config } from "./config/config.js";
 
 const DEFAULT_CONFIG = {
-  gros: true,
-  le: true,
-  mirabelle: true,
+  ...default_config.logger,
 };
 
 export const originalLog = console.log;
@@ -17,6 +16,9 @@ export const translate = (text, config = DEFAULT_CONFIG) => {
   }
   if (config.le) {
     translatedText = setLe(translatedText);
+  }
+  if (config.o) {
+    translatedText = setO(translatedText);
   }
   if (config.mirabelle) {
     translatedText = setMirabelle(translatedText);

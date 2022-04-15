@@ -1,13 +1,15 @@
 import fruits from "./assets/fruits.js";
+import { default_config } from "./config/config.js";
 
 export const setMirabelle = (arg) => {
+  const toReplaceFruit = default_config.fruit;
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
     Object.keys(newObject).forEach((key) => {
       if (typeof newObject[key] === "string") {
         fruits.map((fruit) => {
           const fruitRegExp = new RegExp(fruit, "ig");
-          newObject[key] = newObject[key].replace(fruitRegExp, "mirabelle");
+          newObject[key] = newObject[key].replace(fruitRegExp, toReplaceFruit);
         });
       }
     });
@@ -16,7 +18,7 @@ export const setMirabelle = (arg) => {
   if (typeof arg === "string") {
     fruits.map((fruit) => {
       const fruitRegExp = new RegExp(fruit, "ig");
-      arg = arg.replace(fruitRegExp, "mirabelle");
+      arg = arg.replace(fruitRegExp, toReplaceFruit);
     });
   }
   return arg;
@@ -25,7 +27,7 @@ export const setMirabelle = (arg) => {
 const regexCapital = /\b[A-Z][a-zA-Z]*\b/;
 
 export const setLe = (arg) => {
-  const le = "le ";
+  const le = default_config.le;
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
     Object.keys(newObject).forEach((key) => {
@@ -39,7 +41,7 @@ export const setLe = (arg) => {
 };
 
 export const setGros = (arg) => {
-  const gros = " gros";
+  const gros = default_config.suffix;
   if (typeof arg === "object") {
     const newObject = Object.assign({}, arg);
     Object.keys(newObject).forEach((key) => {
@@ -48,4 +50,23 @@ export const setGros = (arg) => {
     return newObject;
   }
   return arg + gros;
+};
+
+export const setO = (arg) => {
+  const toReplaceA = default_config.a;
+  const regexpToFindA = new RegExp(/[aAâ]/, "g");
+  if (typeof arg === "object") {
+    const newObject = Object.assign({}, arg);
+    Object.keys(newObject).forEach((key) => {
+      if (typeof newObject[key] === "string") {
+        newObject[key] = newObject[key].replace(regexpToFindA, toReplaceA);
+      }
+    });
+    return newObject;
+  }
+  if (typeof arg === "string") {
+    arg = arg.replace(regexpToFindA, toReplaceA);
+    return arg;
+  }
+  return arg;
 };
