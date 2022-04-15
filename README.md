@@ -60,11 +60,20 @@ Tu peux spécifier quelles options activer uniquement :
 initAll({gros: true});
 ```
 Les logs lorrains sont maintenant actifs
+La traduction s'applique aussi bien aux `string` qu'aux `array` ou `object`.
 
 ```javascript
 console.log('Michel est parti');     // le Michel est parti gros
 console.warn('Jacky est revenu');         // le Jacky est revenu gros
 console.error('Francis mange une pomme');        // le Francis mange une mirabelle gros
+console.log({ 
+    michel: 'Michel est parti',
+    jacky: 'Jacky est revenu'
+});        // { michel: "le Michel est parti gros", jacky: "le Jacky est revenu gros" }
+console.log([
+    'Michel est parti',
+    'Jacky est revenu'
+]);        // ["le Michel est parti gros", "le Jacky est revenu gros"]
 ```
 
 ## LES OPTIONS DE CONFIGURATION
@@ -165,5 +174,9 @@ initLog(configLog);
 initWarn(configWarn);
 console.log('Francis mange une pomme');     // Francis mange une mirabelle gros
 console.warn('Francis mange une pomme');         // Francis mange une mirabelle
+console.warn([
+    'Francis mange une pomme',
+    'Jacky est revenu'
+]);        // ["Francis mange une mirabelle", "Jacky est revenu"]
 console.error('Francis mange une pomme');        // Francis mange une pomme
 ```
