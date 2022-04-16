@@ -37,7 +37,7 @@ export const setMirabelle = (source) => {
 
 export const setLe = (source) => {
   const le = default_config.le;
-  const regexCapital = /\b[A-Z][a-zA-Z]*\b/;
+  const regexCapital = new RegExp(/\b[A-Z][a-zA-Z]*\b/, "g");
 
   const replaceFunction = (text) => {
     return text.replace(regexCapital, `${le}$&`);

@@ -17,6 +17,7 @@ describe("Detailed translation", () => {
     it.each([
       ["Jacky", "le Jacky"],
       ["ballon", "ballon"],
+      ["Jackie et Michel", "le Jackie et le Michel"],
     ])('should return "%s" for "%s" le/la translation', (source, result) => {
       expect(setLe(source)).toBe(result);
     });
