@@ -92,7 +92,10 @@ export const setGros = (source) => {
 
 export const setO = (source) => {
   const toReplaceA = default_config.a;
-  const regexpToFindA = new RegExp(/[aAâ]/, "g");
+  const regexpToFindA = new RegExp(
+    /(?<=[^euioy ])(([aAâ])(?=[^bneyuio]))/,
+    "g"
+  );
 
   const replaceFunction = (text) => {
     return text.replace(regexpToFindA, toReplaceA);
