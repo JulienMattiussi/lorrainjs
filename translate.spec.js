@@ -17,7 +17,11 @@ describe("Detailed translation", () => {
     it.each([
       ["Jacky", "le Jacky"],
       ["ballon", "ballon"],
-      ["Jackie et Michel", "le Jackie et le Michel"],
+      ["Jackie et Michel", "la Jackie et le Michel"],
+      ["C'est le vélo de François", "C'est le vélo du François"],
+      ["C'est l'ordinateur de Cindy", "C'est l'ordinateur de la Cindy"],
+      ["Il faut le dire à Matthieu", "Il faut le dire au Matthieu"],
+      ["Il faut le dire à Caroline", "Il faut le dire à la Caroline"],
     ])('should return "%s" for "%s" le/la translation', (source, result) => {
       expect(setLe(source)).toBe(result);
     });

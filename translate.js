@@ -1,4 +1,5 @@
 import fruits from "./assets/fruits.js";
+import names from "./assets/names.js";
 import { default_config } from "./config/config.js";
 
 const applyTranslateByType = (source, translate) => {
@@ -36,11 +37,32 @@ export const setMirabelle = (source) => {
 };
 
 export const setLe = (source) => {
-  const le = default_config.le;
-  const regexCapital = new RegExp(/\b[A-Z][a-zA-Z]*\b/, "g");
-
   const replaceFunction = (text) => {
-    return text.replace(regexCapital, `${le}$&`);
+    let newText = `${text}`;
+    names.map((name) => {
+      const nameDeRegExp = new RegExp("de " + name.name, "g");
+      if (nameDeRegExp.test(newText)) {
+        newText = newText.replace(
+          nameDeRegExp,
+          `${name.sex === "f" ? "de la" : "du"} ${name.name}`
+        );
+        return;
+      }
+      const nameAuRegExp = new RegExp("à " + name.name, "g");
+      if (nameAuRegExp.test(newText)) {
+        newText = newText.replace(
+          nameAuRegExp,
+          `${name.sex === "f" ? "à la" : "au"} ${name.name}`
+        );
+        return;
+      }
+      const nameRegExp = new RegExp(name.name, "g");
+      newText = newText.replace(
+        nameRegExp,
+        `${name.sex === "f" ? "la " : "le "}$&`
+      );
+    });
+    return newText;
   };
 
   return applyTranslateByType(source, replaceFunction);
