@@ -31,6 +31,10 @@
     "grosse"
   ],
   "scripts": {
-    "example": "node ./examples/index.js"
+    "example": "node ./examples/index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
