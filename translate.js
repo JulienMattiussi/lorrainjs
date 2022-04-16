@@ -48,8 +48,20 @@ export const setLe = (source) => {
 
 export const setGros = (source) => {
   const gros = default_config.suffix;
+  const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
+  const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
+  const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
 
   const replaceFunction = (text) => {
+    if (regexpToCheckGros.test(text)) {
+      return text;
+    }
+    if (regexpToCheckPunctuationWithSpace.test(text)) {
+      return text.replace(regexpToCheckPunctuationWithSpace, `${gros}$&`);
+    }
+    if (regexpToCheckPunctuation.test(text)) {
+      return text.replace(regexpToCheckPunctuation, `${gros}$&`);
+    }
     return text + gros;
   };
 
