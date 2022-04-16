@@ -1,73 +1,102 @@
 import fruits from "./assets/fruits.js";
+import names from "./assets/names.js";
 import { default_config } from "./config/config.js";
 
-export const setMirabelle = (arg) => {
-  const toReplaceFruit = default_config.fruit;
-  if (typeof arg === "object") {
-    const newObject = Object.assign({}, arg);
+const applyTranslateByType = (source, translate) => {
+  if (typeof source === "object") {
+    if (source instanceof Date) {
+      return source;
+    }
+    const newObject = Object.assign({}, source);
     Object.keys(newObject).forEach((key) => {
       if (typeof newObject[key] === "string") {
-        fruits.map((fruit) => {
-          const fruitRegExp = new RegExp(fruit, "ig");
-          newObject[key] = newObject[key].replace(fruitRegExp, toReplaceFruit);
-        });
+        newObject[key] = translate(newObject[key]);
       }
     });
     return newObject;
   }
-  if (typeof arg === "string") {
+  if (typeof source === "string") {
+    return translate(source);
+  }
+  return source;
+};
+
+export const setMirabelle = (source) => {
+  const toReplaceFruit = default_config.fruit;
+
+  const replaceFunction = (text) => {
+    let newText = `${text}`;
     fruits.map((fruit) => {
       const fruitRegExp = new RegExp(fruit, "ig");
-      arg = arg.replace(fruitRegExp, toReplaceFruit);
+      newText = newText.replace(fruitRegExp, toReplaceFruit);
     });
-  }
-  return arg;
+    return newText;
+  };
+
+  return applyTranslateByType(source, replaceFunction);
 };
 
-const regexCapital = /\b[A-Z][a-zA-Z]*\b/;
-
-export const setLe = (arg) => {
-  const le = default_config.le;
-  if (typeof arg === "object") {
-    const newObject = Object.assign({}, arg);
-    Object.keys(newObject).forEach((key) => {
-      if (typeof newObject[key] === "string") {
-        newObject[key] = newObject[key].replace(regexCapital, `${le}$&`);
+export const setLe = (source) => {
+  const replaceFunction = (text) => {
+    let newText = `${text}`;
+    names.map((name) => {
+      const nameDeRegExp = new RegExp("de " + name.name, "g");
+      if (nameDeRegExp.test(newText)) {
+        newText = newText.replace(
+          nameDeRegExp,
+          `${name.sex === "f" ? "de la" : "du"} ${name.name}`
+        );
+        return;
       }
+      const nameAuRegExp = new RegExp("à " + name.name, "g");
+      if (nameAuRegExp.test(newText)) {
+        newText = newText.replace(
+          nameAuRegExp,
+          `${name.sex === "f" ? "à la" : "au"} ${name.name}`
+        );
+        return;
+      }
+      const nameRegExp = new RegExp(name.name, "g");
+      newText = newText.replace(
+        nameRegExp,
+        `${name.sex === "f" ? "la " : "le "}$&`
+      );
     });
-    return newObject;
-  }
-  return arg.replace(regexCapital, `${le}$&`);
+    return newText;
+  };
+
+  return applyTranslateByType(source, replaceFunction);
 };
 
-export const setGros = (arg) => {
+export const setGros = (source) => {
   const gros = default_config.suffix;
-  if (typeof arg === "object") {
-    const newObject = Object.assign({}, arg);
-    Object.keys(newObject).forEach((key) => {
-      newObject[key] = newObject[key] + gros;
-    });
-    return newObject;
-  }
-  return arg + gros;
+  const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
+  const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
+  const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
+
+  const replaceFunction = (text) => {
+    if (regexpToCheckGros.test(text)) {
+      return text;
+    }
+    if (regexpToCheckPunctuationWithSpace.test(text)) {
+      return text.replace(regexpToCheckPunctuationWithSpace, `${gros}$&`);
+    }
+    if (regexpToCheckPunctuation.test(text)) {
+      return text.replace(regexpToCheckPunctuation, `${gros}$&`);
+    }
+    return text + gros;
+  };
+
+  return applyTranslateByType(source, replaceFunction);
 };
 
-export const setO = (arg) => {
+export const setO = (source) => {
   const toReplaceA = default_config.a;
-  const fruitToNotReplace = default_config.fruit;
-  const regexpToFindA = new RegExp(/(?<=[^euioy ])(([aAâ])(?=[^beyuio]))/, "g");
-  if (typeof arg === "object") {
-    const newObject = Object.assign({}, arg);
-    Object.keys(newObject).forEach((key) => {
-      if (typeof newObject[key] === "string") {
-        newObject[key] = newObject[key].replace(regexpToFindA, toReplaceA);
-      }
-    });
-    return newObject;
-  }
-  if (typeof arg === "string" && arg) {
-    arg = arg.replace(regexpToFindA, toReplaceA);
-    return arg;
-  }
-  return arg;
+  const regexpToFindA = new RegExp(/[aAâ]/, "g");
+
+  const replaceFunction = (text) => {
+    return text.replace(regexpToFindA, toReplaceA);
+  };
+
+  return applyTranslateByType(source, replaceFunction);
 };

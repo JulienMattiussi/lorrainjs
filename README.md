@@ -93,6 +93,10 @@ console.log(["Michel est parti", "Jacky est revenu"]); // ["le Michel est parti 
    mirabelle: true;
    // met 'true' ou 'false' pour convertir les fruits étrangers.
    ```
+4. ```javascript
+   o: true;
+   // met 'true' ou 'false' pour convertir la voyelle "a" en "ô" lorrain.
+   ```
 
 Exemple :
 
@@ -100,6 +104,7 @@ Exemple :
 const config = {
   gros: true,
   le: false,
+  o: true,
   mirabelle: true,
 };
 ```
