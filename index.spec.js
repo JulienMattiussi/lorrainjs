@@ -131,6 +131,7 @@ describe("translate complex params", () => {
         d: "Le cheval de Sylvie.",
       },
     ],
+    [new Error("Données inaccessibles."), new Error("Données inaccessibles.")],
   ])('should return "%s" for "%s" no translation', (source, result) => {
     expect(translate(source, {})).toStrictEqual(result);
   });
@@ -163,6 +164,10 @@ describe("translate complex params", () => {
         c: 2.09,
         d: "Le chevôl de lô Sylvie gros.",
       },
+    ],
+    [
+      new Error("Données inaccessibles."),
+      new Error("Données inôccessibles gros."),
     ],
   ])('should return "%s" for "%s" default translation', (source, result) => {
     expect(translate(source)).toStrictEqual(result);

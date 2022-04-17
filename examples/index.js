@@ -1,6 +1,7 @@
 import lorrainjs from "../index.js";
 console.log(`Toto`);
 lorrainjs.initLog();
+lorrainjs.initError();
 console.log("Toto");
 console.log("Toto !");
 console.log("Toto.");
@@ -12,3 +13,4 @@ console.log([new Date(2021, 7, 3), "salut"]);
 console.log(["Toto", "poire"]);
 console.log({ fruit: "poire", nom: "Toto" });
 console.log(`Patrick aimerais beaucoup manger des pâtes et des oranges`);
+console.error(new Error("donnée non trouvée"));

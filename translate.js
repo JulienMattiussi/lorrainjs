@@ -15,6 +15,10 @@ const applyTranslateByType = (source, translate) => {
         return item;
       });
     }
+    if (source instanceof Error) {
+      source.message = translate(source.message);
+      return source;
+    }
     const newObject = Object.assign({}, source);
     Object.keys(newObject).forEach((key) => {
       if (typeof newObject[key] === "string") {
