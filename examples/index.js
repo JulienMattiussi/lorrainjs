@@ -1,12 +1,14 @@
 import lorrainjs from "../index.js";
 console.log(`Toto`);
-lorrainjs.initAll();
+lorrainjs.initLog();
 console.log("Toto");
 console.log("Toto !");
 console.log("Toto.");
 console.log("Tito gros.");
 console.log("Tuto dégros");
 console.log(`poire`);
+console.log(new Date(2021, 7, 3));
+console.log([new Date(2021, 7, 3), "salut"]);
 console.log(["Toto", "poire"]);
 console.log({ fruit: "poire", nom: "Toto" });
 console.log(`Patrick aimerais beaucoup manger des pâtes et des oranges`);

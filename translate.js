@@ -7,6 +7,14 @@ const applyTranslateByType = (source, translate) => {
     if (source instanceof Date) {
       return source;
     }
+    if (source instanceof Array) {
+      return source.map((item) => {
+        if (typeof item === "string") {
+          return translate(item);
+        }
+        return item;
+      });
+    }
     const newObject = Object.assign({}, source);
     Object.keys(newObject).forEach((key) => {
       if (typeof newObject[key] === "string") {

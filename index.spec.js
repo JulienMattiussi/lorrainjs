@@ -68,3 +68,103 @@ describe("translate full", () => {
     ).toBe(result);
   });
 });
+
+describe("no translate", () => {
+  const testDate = new Date(2022, 10, 11);
+
+  it.each([
+    [testDate, testDate],
+    [11, 11],
+    [true, true],
+    [false, false],
+    [123.77, 123.77],
+  ])(
+    'should return "%s" for "%s" ignoring no translation',
+    (source, result) => {
+      expect(translate(source, {})).toStrictEqual(result);
+    }
+  );
+
+  it.each([
+    [testDate, testDate],
+    [11, 11],
+    [true, true],
+    [false, false],
+    [123.77, 123.77],
+  ])(
+    'should return "%s" for "%s" ignoring default translation',
+    (source, result) => {
+      expect(translate(source)).toStrictEqual(result);
+    }
+  );
+});
+
+describe("translate complex params", () => {
+  const testDate = new Date(2022, 10, 11);
+
+  it.each([
+    [
+      [
+        "Salut Jacky, tu veux une noix de cajou ?",
+        testDate,
+        2.09,
+        "Le cheval de Sylvie.",
+      ],
+      [
+        "Salut Jacky, tu veux une noix de cajou ?",
+        testDate,
+        2.09,
+        "Le cheval de Sylvie.",
+      ],
+    ],
+    [
+      {
+        a: "Salut Jacky, tu veux une noix de cajou ?",
+        b: testDate,
+        c: 2.09,
+        d: "Le cheval de Sylvie.",
+      },
+      {
+        a: "Salut Jacky, tu veux une noix de cajou ?",
+        b: testDate,
+        c: 2.09,
+        d: "Le cheval de Sylvie.",
+      },
+    ],
+  ])('should return "%s" for "%s" no translation', (source, result) => {
+    expect(translate(source, {})).toStrictEqual(result);
+  });
+
+  it.each([
+    [
+      [
+        "Salut Jacky, tu veux une noix de cajou ?",
+        testDate,
+        2.09,
+        "Le cheval de Sylvie.",
+      ],
+      [
+        "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+        testDate,
+        2.09,
+        "Le chevôl de lô Sylvie gros.",
+      ],
+    ],
+    [
+      {
+        a: "Salut Jacky, tu veux une noix de cajou ?",
+        b: testDate,
+        c: 2.09,
+        d: "Le cheval de Sylvie.",
+      },
+      {
+        a: "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+        b: testDate,
+        c: 2.09,
+        d: "Le chevôl de lô Sylvie gros.",
+      },
+    ],
+  ])('should return "%s" for "%s" default translation', (source, result) => {
+    expect(translate(source)).toStrictEqual(result);
+  });
+});
