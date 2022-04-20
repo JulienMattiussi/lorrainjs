@@ -10,6 +10,9 @@ const applyTranslateByType = (source, translate) => {
     if (source instanceof Array) {
       return source.map((item) => {
         if (typeof item === "string") {
+          if (item === "") {
+            return item;
+          }
           return translate(item);
         }
         return item;
@@ -28,6 +31,9 @@ const applyTranslateByType = (source, translate) => {
     return newObject;
   }
   if (typeof source === "string") {
+    if (source === "") {
+      return source;
+    }
     return translate(source);
   }
   return source;
