@@ -592,4 +592,5 @@ export default [
   { name: "Jackie", sex: "f" },
   { name: "Matthieu", sex: "m" },
   { name: "Cindy", sex: "f" },
+  { name: "Patrice", sex: "m" },
 ];

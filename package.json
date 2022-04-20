@@ -1,6 +1,6 @@
 {
   "name": "lorrainjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Logger for Lorraine people",
   "main": "index.js",
   "author": {
