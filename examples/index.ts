@@ -1,4 +1,4 @@
-import lorrainjs from "../index.js";
+import lorrainjs from "../src/index";
 console.log(`Toto`);
 lorrainjs.initLog();
 lorrainjs.initError();
