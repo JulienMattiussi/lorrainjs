@@ -1,6 +1,6 @@
-import fruits from "./assets/fruits.js";
-import names from "./assets/names.js";
-import { default_config } from "./config/config.js";
+import fruits from "./assets/fruits";
+import names from "./assets/names";
+import { default_config } from "./config/config";
 
 const applyTranslateByType = (source, translate) => {
   if (typeof source === "object") {

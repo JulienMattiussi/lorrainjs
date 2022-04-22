@@ -35,7 +35,7 @@
     "mirabelle"
   ],
   "scripts": {
-    "example": "node ./examples/index.js",
+    "example": "npx ts-node ./examples/index.ts",
     "test": "jest"
   },
   "devDependencies": {

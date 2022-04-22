@@ -1,4 +1,4 @@
-const lorrainjs = require("../src/index.ts");
+import lorrainjs from "../src/index";
 console.log(`Toto`);
 lorrainjs.initLog();
 lorrainjs.initError();

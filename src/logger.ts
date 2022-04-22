@@ -1,5 +1,5 @@
-import { setLe, setGros, setMirabelle, setO } from "./translate.js";
-import { default_config } from "./config/config.js";
+import { setLe, setGros, setMirabelle, setO } from "./translate";
+import { default_config } from "./config/config";
 
 const DEFAULT_CONFIG = {
   ...default_config.logger,
