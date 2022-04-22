@@ -1,30 +1,36 @@
 import { setLe, setGros, setMirabelle, setO } from "./translate";
-import { default_config } from "./config/config";
+import { translationOptions, TranslationOptions } from "./config/config";
 
-const DEFAULT_CONFIG = {
-  ...default_config.logger,
+const DEFAULT_CONFIG: TranslationOptions = {
+  ...translationOptions,
 };
 
-export const originalLog = console.log;
-export const originalWarn = console.warn;
-export const originalError = console.error;
+export type Source = string | {};
+export type Result = Source;
 
-export const translate = (text, config = DEFAULT_CONFIG) => {
-  let translatedText = text;
+export const originalLog: Function = console.log;
+export const originalWarn: Function = console.warn;
+export const originalError: Function = console.error;
+
+export const translate = (
+  source: Source,
+  config: TranslationOptions = DEFAULT_CONFIG
+): Result => {
+  let translation = source;
   if (config.gros) {
-    translatedText = setGros(translatedText);
+    translation = setGros(translation);
   }
   if (config.le) {
-    translatedText = setLe(translatedText);
+    translation = setLe(translation);
   }
   if (config.mirabelle) {
-    translatedText = setMirabelle(translatedText);
+    translation = setMirabelle(translation);
   }
   if (config.o) {
-    translatedText = setO(translatedText);
+    translation = setO(translation);
   }
 
-  return translatedText;
+  return translation;
 };
 
 export const initLog = (config = DEFAULT_CONFIG) => {

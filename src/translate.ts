@@ -1,6 +1,6 @@
 import fruits from "./assets/fruits";
 import names from "./assets/names";
-import { default_config } from "./config/config";
+import { systemConfig } from "./config/config";
 
 const applyTranslateByType = (source, translate) => {
   if (typeof source === "object") {
@@ -40,7 +40,7 @@ const applyTranslateByType = (source, translate) => {
 };
 
 export const setMirabelle = (source) => {
-  const toReplaceFruit = default_config.fruit;
+  const toReplaceFruit = systemConfig.fruit;
 
   const replaceFunction = (text) => {
     let newText = `${text}`;
@@ -87,7 +87,7 @@ export const setLe = (source) => {
 };
 
 export const setGros = (source) => {
-  const gros = default_config.suffix;
+  const gros = systemConfig.suffix;
   const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
   const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
   const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
@@ -109,7 +109,7 @@ export const setGros = (source) => {
 };
 
 export const setO = (source) => {
-  const toReplaceA = default_config.a;
+  const toReplaceA = systemConfig.a;
   const regexpToFindA = new RegExp(
     /(?<=[^euioy ])(([aAâ])(?=[^bneyuio]))/,
     "g"
