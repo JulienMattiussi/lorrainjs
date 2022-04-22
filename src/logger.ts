@@ -68,14 +68,3 @@ export const initAll = (config = DEFAULT_CONFIG) => {
   initWarn(config);
   initError(config);
 };
-
-export default {
-  originalLog,
-  originalWarn,
-  originalError,
-  initAll,
-  initLog,
-  initWarn,
-  initError,
-  translate,
-};

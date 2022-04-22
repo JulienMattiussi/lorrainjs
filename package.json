@@ -1,8 +1,12 @@
 {
   "name": "lorrainjs",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Logger for Lorraine people",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "author": {
     "name": "YavaDeus",
     "email": "julienm@marmelab.com",
@@ -22,7 +26,6 @@
     "type": "git",
     "url": "git@github.com:JulienMattiussi/lorrainjs.git"
   },
-  "type": "module",
   "keywords": [
     "lorraine",
     "lorrains",
