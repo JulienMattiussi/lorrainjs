@@ -18,16 +18,6 @@ export { originalWarn } from "./logger.js";
 export { originalError } from "./logger.js";
 export { translate } from "./logger.js";
 
-/* export {
-  initLog,
-  initWarn,
-  initError,
-  originalLog,
-  originalWarn,
-  originalError,
-  translate,
-} from "./logger.js"; */
-
 export default {
   initAll,
   initLog,

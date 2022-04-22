@@ -31,7 +31,8 @@
     "lorrains",
     "lorrain",
     "gros",
-    "grosse"
+    "grosse",
+    "mirabelle"
   ],
   "scripts": {
     "example": "node ./examples/index.js",

@@ -1,4 +1,4 @@
-const lorrainjs = require("../dist/logger.js");
+const lorrainjs = require("../src/index.ts");
 console.log(`Toto`);
 lorrainjs.initLog();
 lorrainjs.initError();
