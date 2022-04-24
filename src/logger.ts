@@ -32,7 +32,7 @@ export const translate = (
   return translation;
 };
 
-export const initLog = (config = DEFAULT_CONFIG) => {
+export const initLog = (config: TranslationOptions = DEFAULT_CONFIG) => {
   console.log = function () {
     var msgs = [];
     while (arguments.length) {
@@ -56,7 +56,7 @@ export const initWarn = (config = DEFAULT_CONFIG) => {
   };
 };
 
-export const initError = (config = DEFAULT_CONFIG) => {
+export const initError = (config: TranslationOptions = DEFAULT_CONFIG) => {
   console.error = function () {
     var msgs = [];
     while (arguments.length) {
@@ -68,7 +68,7 @@ export const initError = (config = DEFAULT_CONFIG) => {
   };
 };
 
-export const initAll = (config = DEFAULT_CONFIG) => {
+export const initAll = (config: TranslationOptions = DEFAULT_CONFIG) => {
   initLog(config);
   initWarn(config);
   initError(config);
