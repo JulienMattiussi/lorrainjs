@@ -5,17 +5,16 @@ const DEFAULT_CONFIG: TranslationOptions = {
   ...translationOptions,
 };
 
-export type Source = string | {};
-export type Result = Source;
+export type TranlationObject = string | object;
 
-export const originalLog: Function = console.log;
-export const originalWarn: Function = console.warn;
-export const originalError: Function = console.error;
+export const originalLog = console.log;
+export const originalWarn = console.warn;
+export const originalError = console.error;
 
 export const translate = (
-  source: Source,
+  source: TranlationObject,
   config: TranslationOptions = DEFAULT_CONFIG
-): Result => {
+): TranlationObject => {
   let translation = source;
   if (config.gros) {
     translation = setGros(translation);

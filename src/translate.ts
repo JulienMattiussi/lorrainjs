@@ -1,8 +1,11 @@
 import fruits from "./assets/fruits";
 import names from "./assets/names";
 import { systemConfig } from "./config/config";
+import { TranlationObject } from './logger'
 
-const applyTranslateByType = (source, translate) => {
+
+
+const applyTranslateByType = (source: TranlationObject, translate: Function): TranlationObject => {
   if (typeof source === "object") {
     if (source instanceof Date) {
       return source;
@@ -39,10 +42,10 @@ const applyTranslateByType = (source, translate) => {
   return source;
 };
 
-export const setMirabelle = (source) => {
-  const toReplaceFruit = systemConfig.fruit;
-
-  const replaceFunction = (text) => {
+export const setMirabelle = (source: TranlationObject): TranlationObject => {
+  
+  const replaceFunction = (text: string): string => {
+    const toReplaceFruit = systemConfig.fruit;
     let newText = `${text}`;
     fruits.map((fruit) => {
       const fruitRegExp = new RegExp(fruit, "ig");
@@ -54,8 +57,8 @@ export const setMirabelle = (source) => {
   return applyTranslateByType(source, replaceFunction);
 };
 
-export const setLe = (source) => {
-  const replaceFunction = (text) => {
+export const setLe = (source: TranlationObject): TranlationObject => {
+  const replaceFunction = (text: string): string => {
     let newText = `${text}`;
     names.map((name) => {
       const nameDeRegExp = new RegExp("de " + name.name, "g");
@@ -86,13 +89,13 @@ export const setLe = (source) => {
   return applyTranslateByType(source, replaceFunction);
 };
 
-export const setGros = (source) => {
+export const setGros = (source: TranlationObject): TranlationObject => {
   const gros = systemConfig.suffix;
   const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
   const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
   const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
 
-  const replaceFunction = (text) => {
+  const replaceFunction = (text: string): string => {
     if (regexpToCheckGros.test(text)) {
       return text;
     }
@@ -108,14 +111,14 @@ export const setGros = (source) => {
   return applyTranslateByType(source, replaceFunction);
 };
 
-export const setO = (source) => {
+export const setO = (source: TranlationObject): TranlationObject => {
   const toReplaceA = systemConfig.a;
   const regexpToFindA = new RegExp(
     /(?<=[^euioy ])(([aAâ])(?=[^bneyuio]))/,
     "g"
   );
 
-  const replaceFunction = (text) => {
+  const replaceFunction = (text: string): string => {
     return text.replace(regexpToFindA, toReplaceA);
   };
 
