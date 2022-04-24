@@ -1,11 +1,14 @@
 import fruits from "./assets/fruits";
 import names from "./assets/names";
 import { systemConfig } from "./config/config";
-import { TranlationObject } from './logger'
+import { TranlationObject } from "./logger";
 
+export type ReplaceFunction = (text: string) => string;
 
-
-const applyTranslateByType = (source: TranlationObject, translate: Function): TranlationObject => {
+const applyTranslateByType = (
+  source: TranlationObject,
+  translate: ReplaceFunction
+): TranlationObject => {
   if (typeof source === "object") {
     if (source instanceof Date) {
       return source;
@@ -43,8 +46,7 @@ const applyTranslateByType = (source: TranlationObject, translate: Function): Tr
 };
 
 export const setMirabelle = (source: TranlationObject): TranlationObject => {
-  
-  const replaceFunction = (text: string): string => {
+  const replaceFunction: ReplaceFunction = (text) => {
     const toReplaceFruit = systemConfig.fruit;
     let newText = `${text}`;
     fruits.map((fruit) => {
@@ -58,7 +60,7 @@ export const setMirabelle = (source: TranlationObject): TranlationObject => {
 };
 
 export const setLe = (source: TranlationObject): TranlationObject => {
-  const replaceFunction = (text: string): string => {
+  const replaceFunction: ReplaceFunction = (text) => {
     let newText = `${text}`;
     names.map((name) => {
       const nameDeRegExp = new RegExp("de " + name.name, "g");
@@ -95,7 +97,7 @@ export const setGros = (source: TranlationObject): TranlationObject => {
   const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
   const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
 
-  const replaceFunction = (text: string): string => {
+  const replaceFunction: ReplaceFunction = (text) => {
     if (regexpToCheckGros.test(text)) {
       return text;
     }
@@ -118,7 +120,7 @@ export const setO = (source: TranlationObject): TranlationObject => {
     "g"
   );
 
-  const replaceFunction = (text: string): string => {
+  const replaceFunction: ReplaceFunction = (text) => {
     return text.replace(regexpToFindA, toReplaceA);
   };
 

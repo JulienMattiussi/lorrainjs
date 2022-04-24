@@ -8,6 +8,7 @@ console.log("Toto.");
 console.log("Tito gros.");
 console.log("Tuto dégros");
 console.log(`poire`);
+console.log(45);
 console.log(`poire`, "baton", true, 1, [2, "chausson"]);
 console.log(new Date(2021, 7, 3));
 console.log([new Date(2021, 7, 3), "salut"]);
