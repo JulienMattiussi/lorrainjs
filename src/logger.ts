@@ -1,33 +1,38 @@
 import { setLe, setGros, setMirabelle, setO } from "./translate";
-import { default_config } from "./config/config";
+import { translationOptions, TranslationOptions } from "./config/config";
 
-const DEFAULT_CONFIG = {
-  ...default_config.logger,
+const DEFAULT_CONFIG: TranslationOptions = {
+  ...translationOptions,
 };
+
+export type TranlationObject = string | object;
 
 export const originalLog = console.log;
 export const originalWarn = console.warn;
 export const originalError = console.error;
 
-export const translate = (text, config = DEFAULT_CONFIG) => {
-  let translatedText = text;
+export const translate = (
+  source: TranlationObject,
+  config: TranslationOptions = DEFAULT_CONFIG
+): TranlationObject => {
+  let translation = source;
   if (config.gros) {
-    translatedText = setGros(translatedText);
+    translation = setGros(translation);
   }
   if (config.le) {
-    translatedText = setLe(translatedText);
+    translation = setLe(translation);
   }
   if (config.mirabelle) {
-    translatedText = setMirabelle(translatedText);
+    translation = setMirabelle(translation);
   }
   if (config.o) {
-    translatedText = setO(translatedText);
+    translation = setO(translation);
   }
 
-  return translatedText;
+  return translation;
 };
 
-export const initLog = (config = DEFAULT_CONFIG) => {
+export const initLog = (config: TranslationOptions = DEFAULT_CONFIG) => {
   console.log = function () {
     var msgs = [];
     while (arguments.length) {
@@ -51,7 +56,7 @@ export const initWarn = (config = DEFAULT_CONFIG) => {
   };
 };
 
-export const initError = (config = DEFAULT_CONFIG) => {
+export const initError = (config: TranslationOptions = DEFAULT_CONFIG) => {
   console.error = function () {
     var msgs = [];
     while (arguments.length) {
@@ -63,7 +68,7 @@ export const initError = (config = DEFAULT_CONFIG) => {
   };
 };
 
-export const initAll = (config = DEFAULT_CONFIG) => {
+export const initAll = (config: TranslationOptions = DEFAULT_CONFIG) => {
   initLog(config);
   initWarn(config);
   initError(config);
