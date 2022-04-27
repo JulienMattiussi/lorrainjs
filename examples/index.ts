@@ -3,6 +3,7 @@ console.log(`Toto`);
 lorrainjs.initLog();
 lorrainjs.initError();
 console.log("Toto");
+console.log("C'est l'heure de changer la couche de Micheline");
 console.log("Toto !");
 console.log("Toto.");
 console.log("Tito gros.");

@@ -63,23 +63,32 @@ export const setLe = (source: TranlationObject): TranlationObject => {
   const replaceFunction: ReplaceFunction = (text) => {
     let newText = `${text}`;
     names.map((name) => {
-      const nameDeRegExp = new RegExp("de " + name.name, "g");
+      const nameDeRegExp = new RegExp(
+        `de( ${name.name}[^a-zA-Zéèàçù])|de( ${name.name})$`,
+        "g"
+      );
       if (nameDeRegExp.test(newText)) {
         newText = newText.replace(
           nameDeRegExp,
-          `${name.sex === "f" ? "de la" : "du"} ${name.name}`
+          `${name.sex === "f" ? "de la" : "du"}$1$2`
         );
         return;
       }
-      const nameAuRegExp = new RegExp("à " + name.name, "g");
+      const nameAuRegExp = new RegExp(
+        `à( ${name.name}[^a-zA-Zéèàçù])|à( ${name.name})$`,
+        "g"
+      );
       if (nameAuRegExp.test(newText)) {
         newText = newText.replace(
           nameAuRegExp,
-          `${name.sex === "f" ? "à la" : "au"} ${name.name}`
+          `${name.sex === "f" ? "à la" : "au"}$1$2`
         );
         return;
       }
-      const nameRegExp = new RegExp(name.name, "g");
+      const nameRegExp = new RegExp(
+        `${name.name}[^a-zA-Zéèàçù]|${name.name}$`,
+        "g"
+      );
       newText = newText.replace(
         nameRegExp,
         `${name.sex === "f" ? "la " : "le "}$&`
