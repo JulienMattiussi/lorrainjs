@@ -1,6 +1,6 @@
 {
   "name": "lorrainjs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Logger for Lorraine people",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,10 @@
     "lorrain",
     "gros",
     "grosse",
-    "mirabelle"
+    "mirabelle",
+    "bergamote",
+    "bergamotte",
+    "madeleine"
   ],
   "scripts": {
     "example": "npx ts-node ./examples/index.ts",
