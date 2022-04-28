@@ -78,7 +78,7 @@ export const translate = (
 };
 
 /**
- * Override the default console.log function with the lorainjs log function using given options.
+ * Override the default console.log function with the lorrainjs log function using given options.
  *
  * @example <caption>Example usage with default options.</caption>
  * initLog();
@@ -101,7 +101,7 @@ export const initLog = (options: TranslationOptions = DEFAULT_OPTIONS) => {
 };
 
 /**
- * Override the default console.warn function with the lorainjs warn function using given options.
+ * Override the default console.warn function with the lorrainjs warn function using given options.
  *
  * @example <caption>Example usage with default options.</caption>
  * initWarn();
@@ -124,7 +124,7 @@ export const initWarn = (options = DEFAULT_OPTIONS) => {
 };
 
 /**
- * Override the default console.error function with the lorainjs error function using given options.
+ * Override the default console.error function with the lorrainjs error function using given options.
  *
  * @example <caption>Example usage with default options.</caption>
  * initError();
@@ -147,7 +147,7 @@ export const initError = (options: TranslationOptions = DEFAULT_OPTIONS) => {
 };
 
 /**
- * Override the default console.log, console.warn and console.error functions with the lorainjs functions using given options.
+ * Override the default console.log, console.warn and console.error functions with the lorrainjs functions using given options.
  *
  * @example <caption>Example usage with default options.</caption>
  * initAll();
