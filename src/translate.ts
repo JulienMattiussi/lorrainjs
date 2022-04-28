@@ -5,7 +5,25 @@ import { TranlationObject } from "./logger";
 
 export type ReplaceFunction = (text: string) => string;
 
-const applyTranslateByType = (
+/**
+ * Apply a replace fonction to a source to translate it.
+ * This should be called for every aspect of the translation using each time the needed replace function.
+ * The process depend on the type of the source.
+ *
+ * @example <caption>Example usage with a string.</caption>
+ * // returns "Le Michel"
+ * applyTranslateByType("Michel", replaceNameWithLe);
+ *
+ * @example <caption>Example usage with an array.</caption>
+ * // returns ["Salut gros", "Bye gros.", true]
+ * applyTranslateByType(["Salut", "Bye.", true], replaceWithGros);
+ *
+ * @param {TranlationObject} source - The item to be translated.
+ * @param {ReplaceFunction} translate - The fonction to be applied on the source.
+ *
+ * @returns {TranlationObject} Returns a translated object of the same type than the source.
+ */
+export const applyTranslateByType = (
   source: TranlationObject,
   translate: ReplaceFunction
 ): TranlationObject => {
@@ -45,6 +63,21 @@ const applyTranslateByType = (
   return source;
 };
 
+/**
+ * Translate a source to replace fruits names by "mirabelle".
+ *
+ * @example <caption>Example usage with a string.</caption>
+ * // returns "La mirabelle"
+ * setMirabelle("La pomme");
+ *
+ * @example <caption>Example usage with an array.</caption>
+ * // returns ["La mirabelle", "Coucou", true]
+ * setMirabelle(["La pomme", "Coucou", true]);
+ *
+ * @param {TranlationObject} source - The item to be translated.
+ *
+ * @returns {TranlationObject} Returns a translated object of the same type than the source.
+ */
 export const setMirabelle = (source: TranlationObject): TranlationObject => {
   const replaceFunction: ReplaceFunction = (text) => {
     const toReplaceFruit = systemConfig.fruit;
@@ -59,6 +92,21 @@ export const setMirabelle = (source: TranlationObject): TranlationObject => {
   return applyTranslateByType(source, replaceFunction);
 };
 
+/**
+ * Translate a source to add le/la/du/au before every firstnames.
+ *
+ * @example <caption>Example usage with a string.</caption>
+ * // returns "La Michelle"
+ * setLe("Michelle");
+ *
+ * @example <caption>Example usage with an array.</caption>
+ * // returns ["La Michelle", "La hache du Thierry", true]
+ * setLe(["Michelle", "La hache de Thierry", true]);
+ *
+ * @param {TranlationObject} source - The item to be translated.
+ *
+ * @returns {TranlationObject} Returns a translated object of the same type than the source.
+ */
 export const setLe = (source: TranlationObject): TranlationObject => {
   const replaceFunction: ReplaceFunction = (text) => {
     let newText = `${text}`;
@@ -111,6 +159,21 @@ export const setLe = (source: TranlationObject): TranlationObject => {
   return applyTranslateByType(source, replaceFunction);
 };
 
+/**
+ * Translate a source to add "gros" at the end.
+ *
+ * @example <caption>Example usage with a string.</caption>
+ * // returns "Salut gros."
+ * setGros("Salut.");
+ *
+ * @example <caption>Example usage with an array.</caption>
+ * // returns ["Salut gros.", "Tu fais quoi gros ?", true]
+ * setGros(["Salut.", "Tu fais quoi ?", true]);
+ *
+ * @param {TranlationObject} source - The item to be translated.
+ *
+ * @returns {TranlationObject} Returns a translated object of the same type than the source.
+ */
 export const setGros = (source: TranlationObject): TranlationObject => {
   const gros = systemConfig.suffix;
   const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
@@ -133,6 +196,21 @@ export const setGros = (source: TranlationObject): TranlationObject => {
   return applyTranslateByType(source, replaceFunction);
 };
 
+/**
+ * Translate a source to replace the "a" letter by the "ô" letter in correct situations.
+ *
+ * @example <caption>Example usage with a string.</caption>
+ * // returns "Salut gros."
+ * setO("Salut.");
+ *
+ * @example <caption>Example usage with an array.</caption>
+ * // returns ["Salut gros.", "Tu fais quoi gros ?", true]
+ * setO(["Salut.", "Tu fais quoi ?", true]);
+ *
+ * @param {TranlationObject} source - The item to be translated.
+ *
+ * @returns {TranlationObject} Returns a translated object of the same type than the source.
+ */
 export const setO = (source: TranlationObject): TranlationObject => {
   const toReplaceA = systemConfig.a;
   const regexpToFindA = new RegExp(
