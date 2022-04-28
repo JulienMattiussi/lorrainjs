@@ -1,4 +1,4 @@
-import { translate } from "./index";
+import { translate } from "./logger";
 
 describe("translate with options", () => {
   it.each([
@@ -53,6 +53,10 @@ describe("translate full", () => {
       "Salut Jacky, tu veux une noix de cajou ?",
       "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
     ],
+    [
+      "C'est l'heure de changer la couche de Micheline",
+      "C'est l'heure de changer lô couche de lô Micheline gros",
+    ],
   ])('should return "%s" for "%s" default translation', (source, result) => {
     expect(translate(source)).toBe(result);
   });
@@ -61,6 +65,10 @@ describe("translate full", () => {
     [
       "Salut Jacky, tu veux une noix de cajou ?",
       "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+    ],
+    [
+      "C'est l'heure de changer la couche de Micheline",
+      "C'est l'heure de changer lô couche de lô Micheline gros",
     ],
   ])('should return "%s" for "%s" full translation', (source, result) => {
     expect(

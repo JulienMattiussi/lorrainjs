@@ -1,11 +1,11 @@
 import { setLe, setGros, setMirabelle, setO } from "./translate";
 import { translationOptions, TranslationOptions } from "./config/config";
 
-const DEFAULT_CONFIG: TranslationOptions = {
+const DEFAULT_OPTIONS: TranslationOptions = {
   ...translationOptions,
 };
 
-export type TranlationObject = string | object;
+export type TranlationObject = string | object | number | Date | boolean;
 
 export const originalLog = console.log;
 export const originalWarn = console.warn;
@@ -13,63 +13,63 @@ export const originalError = console.error;
 
 export const translate = (
   source: TranlationObject,
-  config: TranslationOptions = DEFAULT_CONFIG
+  options: TranslationOptions = DEFAULT_OPTIONS
 ): TranlationObject => {
   let translation = source;
-  if (config.gros) {
+  if (options.gros) {
     translation = setGros(translation);
   }
-  if (config.le) {
+  if (options.le) {
     translation = setLe(translation);
   }
-  if (config.mirabelle) {
+  if (options.mirabelle) {
     translation = setMirabelle(translation);
   }
-  if (config.o) {
+  if (options.o) {
     translation = setO(translation);
   }
 
   return translation;
 };
 
-export const initLog = (config: TranslationOptions = DEFAULT_CONFIG) => {
+export const initLog = (options: TranslationOptions = DEFAULT_OPTIONS) => {
   console.log = function () {
     var msgs = [];
     while (arguments.length) {
       const argument = [].shift.call(arguments);
-      msgs.push(translate(argument, config));
+      msgs.push(translate(argument, options));
     }
 
     originalLog.apply(console, msgs);
   };
 };
 
-export const initWarn = (config = DEFAULT_CONFIG) => {
+export const initWarn = (options = DEFAULT_OPTIONS) => {
   console.warn = function () {
     var msgs = [];
     while (arguments.length) {
       const argument = [].shift.call(arguments);
-      msgs.push(translate(argument, config));
+      msgs.push(translate(argument, options));
     }
 
     originalWarn.apply(console, msgs);
   };
 };
 
-export const initError = (config: TranslationOptions = DEFAULT_CONFIG) => {
+export const initError = (options: TranslationOptions = DEFAULT_OPTIONS) => {
   console.error = function () {
     var msgs = [];
     while (arguments.length) {
       const argument = [].shift.call(arguments);
-      msgs.push(translate(argument, config));
+      msgs.push(translate(argument, options));
     }
 
     originalError.apply(console, msgs);
   };
 };
 
-export const initAll = (config: TranslationOptions = DEFAULT_CONFIG) => {
-  initLog(config);
-  initWarn(config);
-  initError(config);
+export const initAll = (options: TranslationOptions = DEFAULT_OPTIONS) => {
+  initLog(options);
+  initWarn(options);
+  initError(options);
 };
