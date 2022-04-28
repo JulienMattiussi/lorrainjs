@@ -143,6 +143,13 @@ const options = {
 
   Donne un accès à lô fonction `console.error` d'origine (avant traduction) pour permettre de réaliser des logs non trôduits même après que tu aie exécuté `initError()` ou `initAll()`.
 
+## TESTE LORRAINJS EN LIGNE
+
+
+La librairie peut être testée en ligne via cette ôdresse :
+
+[https://julienmattiussi.github.io/traducteur-lorrain/](https://julienmattiussi.github.io/traducteur-lorrain/)
+
 ## QUELQUES EXEMPLES TU VOIS GROS, ENFIN SI T'ES PAS BEÛLOU :
 
 ```javascript
