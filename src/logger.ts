@@ -5,7 +5,7 @@ const DEFAULT_OPTIONS: TranslationOptions = {
   ...translationOptions,
 };
 
-export type TranlationObject = string | object;
+export type TranlationObject = string | object | number | Date | boolean;
 
 export const originalLog = console.log;
 export const originalWarn = console.warn;
