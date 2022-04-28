@@ -15,15 +15,19 @@ describe("Detailed translation", () => {
 
   describe("setLe", () => {
     it.each([
-      ["Jacky", "le Jacky"],
+      ["Jacky", "Le Jacky"],
       ["ballon", "ballon"],
-      ["Jackie et Michel", "la Jackie et le Michel"],
+      ["Jackie et Michel", "La Jackie et le Michel"],
       ["C'est le vélo de François", "C'est le vélo du François"],
       ["C'est l'ordinateur de Cindy", "C'est l'ordinateur de la Cindy"],
       ["Il faut le dire à Matthieu", "Il faut le dire au Matthieu"],
       ["Il faut le dire à Caroline", "Il faut le dire à la Caroline"],
       ["Le vélo de Micheline", "Le vélo de la Micheline"],
       ["Salut Maxime", "Salut le Maxime"],
+      ["Maxime", "Le Maxime"],
+      ["Thierry", "Le Thierry"],
+      ["Thiery", "Le Thiery"],
+      ["Marine", "La Marine"],
       [
         "C'est l'heure de changer la couche de Micheline",
         "C'est l'heure de changer la couche de la Micheline",

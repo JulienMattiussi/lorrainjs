@@ -85,6 +85,17 @@ export const setLe = (source: TranlationObject): TranlationObject => {
         );
         return;
       }
+      const nameStartRegExp = new RegExp(
+        `^(${name.name}[^a-zA-Zéèàçù])|^(${name.name})$`,
+        "g"
+      );
+      if (nameStartRegExp.test(newText)) {
+        newText = newText.replace(
+          nameStartRegExp,
+          `${name.sex === "f" ? "La " : "Le "}$1$2`
+        );
+        return;
+      }
       const nameRegExp = new RegExp(
         `${name.name}[^a-zA-Zéèàçù]|${name.name}$`,
         "g"
