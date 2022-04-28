@@ -101,7 +101,7 @@ console.log(["Michel est parti", "Jacky est revenu"]); // ["le Michel est parti 
 Exemple :
 
 ```javascript
-const config = {
+const options = {
   gros: true,
   le: false,
   o: true,
@@ -111,23 +111,23 @@ const config = {
 
 ## LES FONCTIONS DISPONIBLES GROS:
 
-- `initAll(config);`
+- `initAll(options);`
 
   Initialise tout le loggueur. Les fonctions nôtives `console.log`, `console.warn` et `console.error` seront trôduites automatiquement.
 
-- `initLog(config);`
+- `initLog(options);`
 
   Initialise uniquement lô fonction `console.log`.
 
-- `initWarn(config);`
+- `initWarn(options);`
 
   Initialise uniquement ô fonction `console.warn`.
 
-- `initError(config);`
+- `initError(options);`
 
   Initialise uniquement lô fonction `console.error`.
 
-- `translate(config);`
+- `translate(options);`
 
   Permet que tu traduise un texte manuellement sans impliquer la console.
 
@@ -155,11 +155,11 @@ console.error("Francis mange une pomme"); // le Francis mange une mirabelle gros
 
 ```javascript
 import { initLog, originalLog } from "lorrainjs";
-const config = {
+const options = {
   gros: true,
   mirabelle: true,
 };
-initLog(config);
+initLog(options);
 console.log("Francis mange une pomme"); // Francis mange une mirabelle gros
 console.warn("Francis mange une pomme"); // Francis mange une pommme
 originalLog("Francis mange une pomme"); // Francis mange une pommme
@@ -167,18 +167,18 @@ originalLog("Francis mange une pomme"); // Francis mange une pommme
 
 ```javascript
 import { initLog, initWarn } from "lorrainjs";
-const configLog = {
+const optionsLog = {
   gros: true,
   le: false,
   mirabelle: true,
 };
-const configWarn = {
+const optionsWarn = {
   gros: false,
   le: false,
   mirabelle: true,
 };
-initLog(configLog);
-initWarn(configWarn);
+initLog(optionsLog);
+initWarn(optionsWarn);
 console.log("Francis mange une pomme"); // Francis mange une mirabelle gros
 console.warn("Francis mange une pomme"); // Francis mange une mirabelle
 console.warn(["Francis mange une pomme", "Jacky est revenu"]); // ["Francis mange une mirabelle", "Jacky est revenu"]
