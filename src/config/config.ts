@@ -1,4 +1,11 @@
-export const translationOptions = {
+export type TranslationOptions = {
+  gros?: boolean;
+  le?: boolean;
+  mirabelle?: boolean;
+  o?: boolean;
+};
+
+export const translationOptions: TranslationOptions = {
   gros: true,
   le: true,
   mirabelle: true,
@@ -11,5 +18,4 @@ export const systemConfig = {
   a: "ô",
 };
 
-export type TranslationOptions = typeof translationOptions;
 export type SystemConfig = typeof systemConfig;
