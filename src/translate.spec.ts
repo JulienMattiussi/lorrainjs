@@ -80,8 +80,8 @@ describe("Apply translate by type", () => {
       [false, false],
       [new Error("Avalanche"), new Error("AvAlAnche")],
       [
-        [true, "abricot", testDate],
-        [true, "Abricot", testDate],
+        [true, "abricot", testDate, undefined],
+        [true, "Abricot", testDate, undefined],
       ],
       [
         { a: true, b: "abricot", c: testDate },
