@@ -1,4 +1,10 @@
-import { setMirabelle, setLe, setGros, setO } from "./translate";
+import {
+  setMirabelle,
+  setLe,
+  setGros,
+  setO,
+  applyTranslateByType,
+} from "./translate";
 
 describe("Detailed translation", () => {
   describe("setMirabelle", () => {
@@ -57,6 +63,85 @@ describe("Detailed translation", () => {
       ["Données inaccessibles", "Données inôccessibles"],
     ])('should return "%s" for "%s" ô translation', (source, result) => {
       expect(setO(source)).toBe(result);
+    });
+  });
+});
+
+describe("Apply translate by type", () => {
+  const testDate = new Date(2022, 10, 11);
+  const testError = new Error("");
+  describe("basics", () => {
+    it.each([
+      ["abricot amer", "Abricot Amer"],
+      [testDate, testDate],
+      [487, 487],
+      [51.987, 51.987],
+      [true, true],
+      [false, false],
+      [new Error("Avalanche"), new Error("AvAlAnche")],
+      [
+        [true, "abricot", testDate],
+        [true, "Abricot", testDate],
+      ],
+      [
+        { a: true, b: "abricot", c: testDate },
+        { a: true, b: "Abricot", c: testDate },
+      ],
+    ])('should return "%s" for "%s" replace', (source, result) => {
+      const replace = (item) => item.replaceAll("a", "A");
+      expect(applyTranslateByType(source, replace)).toStrictEqual(result);
+    });
+  });
+
+  describe("complex", () => {
+    it.each([
+      [
+        [
+          true,
+          { a: true, b: "abricot", c: [testDate, false, "Savon"] },
+          testDate,
+        ],
+        [
+          true,
+          { a: true, b: "Abricot", c: [testDate, false, "SAvon"] },
+          testDate,
+        ],
+      ],
+      [
+        {
+          p: true,
+          q: {
+            a: true,
+            b: "abricot",
+            c: {
+              t: testDate,
+              e: new Error("Avalanche"),
+              s: ["Savon"],
+              z: [],
+              x: [testDate, testError, "ballon blanc"],
+            },
+          },
+          r: testDate,
+        },
+        {
+          p: true,
+          q: {
+            a: true,
+            b: "Abricot",
+            c: {
+              t: testDate,
+              e: new Error("AvAlAnche"),
+              s: ["SAvon"],
+              z: [],
+              x: [testDate, testError, "bAllon blAnc"],
+            },
+          },
+          r: testDate,
+        },
+      ],
+    ])('should return "%s" for "%s" replace', (source, result) => {
+      const replace = (item) => item.replaceAll("a", "A");
+      expect(applyTranslateByType(source, replace)).toStrictEqual(result);
     });
   });
 });

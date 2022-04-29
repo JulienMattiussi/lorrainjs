@@ -177,6 +177,38 @@ describe("translate complex params", () => {
       new Error("Données inaccessibles."),
       new Error("Données inôccessibles gros."),
     ],
+    [
+      {
+        p: true,
+        q: {
+          a: true,
+          b: "abricot.",
+          c: {
+            t: testDate,
+            e: new Error("Avalanche !"),
+            s: ["Savon"],
+            z: [],
+            x: [testDate, 0.45, "ballon blanc"],
+          },
+        },
+        r: testDate,
+      },
+      {
+        p: true,
+        q: {
+          a: true,
+          b: "mirabelle gros.",
+          c: {
+            t: testDate,
+            e: new Error("Avôlanche gros !"),
+            s: ["Sôvon gros"],
+            z: [],
+            x: [testDate, 0.45, "bôllon blanc gros"],
+          },
+        },
+        r: testDate,
+      },
+    ],
   ])('should return "%s" for "%s" default translation', (source, result) => {
     expect(translate(source)).toStrictEqual(result);
   });

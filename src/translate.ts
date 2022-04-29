@@ -33,13 +33,7 @@ export const applyTranslateByType = (
     }
     if (source instanceof Array) {
       return source.map((item) => {
-        if (typeof item === "string") {
-          if (item === "") {
-            return item;
-          }
-          return translate(item);
-        }
-        return item;
+        return applyTranslateByType(item, translate);
       });
     }
     if (source instanceof Error) {
@@ -48,9 +42,7 @@ export const applyTranslateByType = (
     }
     const newObject = Object.assign({}, source);
     Object.keys(newObject).forEach((key) => {
-      if (typeof newObject[key] === "string") {
-        newObject[key] = translate(newObject[key]);
-      }
+      newObject[key] = applyTranslateByType(newObject[key], translate);
     });
     return newObject;
   }
