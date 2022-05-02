@@ -169,20 +169,43 @@ export const setLe = (source: TranlationObject): TranlationObject => {
 export const setGros = (source: TranlationObject): TranlationObject => {
   const gros = systemConfig.suffix;
   const regexpToCheckGros = new RegExp(/ gros.?.?$/, "g");
-  const regexpToCheckPunctuationWithSpace = new RegExp(/ [!?:;.,]$/, "g");
-  const regexpToCheckPunctuation = new RegExp(/[!?:;.,]$/, "g");
+  const regexpToCheckPunctuationWithSpaceNotEnd = new RegExp(
+    /(?= [!?;.][^$])/,
+    "g"
+  );
+  const regexpToCheckPunctuationWithSpaceAndEnd = new RegExp(/ [!?:;.,]$/, "g");
+  const regexpToCheckPunctuationNotEnd = new RegExp(
+    /(?<=[a-zA-Z])(?=[!?;.][^$])/,
+    "g"
+  );
+  const regexpToCheckPunctuationAndEnd = new RegExp(/[!?:;.,]$/, "g");
 
   const replaceFunction: ReplaceFunction = (text) => {
     if (regexpToCheckGros.test(text)) {
       return text;
     }
-    if (regexpToCheckPunctuationWithSpace.test(text)) {
-      return text.replace(regexpToCheckPunctuationWithSpace, `${gros}$&`);
+    let replacedText = `${text}`;
+    if (regexpToCheckPunctuationWithSpaceNotEnd.test(replacedText)) {
+      replacedText = replacedText.replace(
+        regexpToCheckPunctuationWithSpaceNotEnd,
+        () => (Math.random() > 0.5 ? gros : "")
+      );
     }
-    if (regexpToCheckPunctuation.test(text)) {
-      return text.replace(regexpToCheckPunctuation, `${gros}$&`);
+    if (regexpToCheckPunctuationNotEnd.test(replacedText)) {
+      replacedText = replacedText.replace(regexpToCheckPunctuationNotEnd, () =>
+        Math.random() > 0.5 ? gros : ""
+      );
     }
-    return text + gros;
+    if (regexpToCheckPunctuationWithSpaceAndEnd.test(text)) {
+      return replacedText.replace(
+        regexpToCheckPunctuationWithSpaceAndEnd,
+        `${gros}$&`
+      );
+    }
+    if (regexpToCheckPunctuationAndEnd.test(text)) {
+      return replacedText.replace(regexpToCheckPunctuationAndEnd, `${gros}$&`);
+    }
+    return replacedText + gros;
   };
 
   return applyTranslateByType(source, replaceFunction);
