@@ -7,6 +7,7 @@ import {
   originalWarn,
   originalError,
   translate,
+  parseTranslate,
 } from "./logger";
 
 export {
@@ -18,6 +19,7 @@ export {
   originalWarn,
   originalError,
   translate,
+  parseTranslate,
 } from "./logger";
 
 export default {
@@ -29,4 +31,5 @@ export default {
   originalWarn,
   originalError,
   translate,
+  parseTranslate,
 };
