@@ -1,4 +1,4 @@
-import { translate } from "./logger";
+import { translate, parseTranslate } from "./logger";
 
 describe("translate with options", () => {
   it.each([
@@ -211,5 +211,90 @@ describe("translate complex params", () => {
     ],
   ])('should return "%s" for "%s" default translation', (source, result) => {
     expect(translate(source)).toStrictEqual(result);
+  });
+});
+
+describe("parseTranslate full", () => {
+  it.each([
+    [
+      "Salut Jacky, tu veux une noix de cajou ?",
+      "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+    ],
+    [
+      "C'est l'heure de changer la couche de Micheline",
+      "C'est l'heure de changer lô couche de lô Micheline gros",
+    ],
+  ])('should return "%s" for "%s" default translation', (source, result) => {
+    expect(parseTranslate(source)).toBe(result);
+  });
+});
+
+describe("parseTranslate with parse but no translate", () => {
+  const testDate = new Date(2022, 10, 11);
+
+  it.each([
+    ["11", 11],
+    ["true", true],
+    ["false", false],
+    ["123.77", 123.77],
+  ])('should return "%s" for "%s" ignoring translation', (source, result) => {
+    expect(parseTranslate(source)).toStrictEqual(result);
+  });
+});
+
+describe("parseTranslate complex params", () => {
+  it.each([
+    [
+      `[
+        "Salut Jacky, tu veux une noix de cajou ?",
+        2.09,
+        "Le cheval de Sylvie.",
+      ]`,
+      [
+        "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+        2.09,
+        "Le chevôl de lô Sylvie gros.",
+      ],
+    ],
+    [
+      `{
+        a: "Salut Jacky, tu veux une noix de cajou ?",
+        c: 2.09,
+        d: "Le cheval de Sylvie.",
+      }`,
+      {
+        a: "Sôlut le Jôcky, tu veux une mirabelle de côjou gros ?",
+        c: 2.09,
+        d: "Le chevôl de lô Sylvie gros.",
+      },
+    ],
+    [
+      `{
+        p: true,
+        q: {
+          a: true,
+          b: "abricot.",
+          c: {
+            s: ["Savon"],
+            z: [],
+            x: [ 0.45, "ballon blanc"],
+          },
+        },
+      }`,
+      {
+        p: true,
+        q: {
+          a: true,
+          b: "mirabelle gros.",
+          c: {
+            s: ["Sôvon gros"],
+            z: [],
+            x: [0.45, "bôllon blanc gros"],
+          },
+        },
+      },
+    ],
+  ])('should return "%s" for "%s" default translation', (source, result) => {
+    expect(parseTranslate(source)).toStrictEqual(result);
   });
 });

@@ -1,4 +1,4 @@
-import { setLe, setGros, setMirabelle, setO } from "./translate";
+import { setLe, setGros, setMirabelle, setO } from "./translate/";
 import { translationOptions, TranslationOptions } from "./config/config";
 
 const DEFAULT_OPTIONS: TranslationOptions = {
@@ -75,6 +75,76 @@ export const translate = (
   }
 
   return translation;
+};
+
+/**
+ * Modify a string with quotes trying to set it compatible to JSON parsing.
+ *
+ * @example <caption>Example usage.</caption>
+ * // returns { "test": "Bonjour", "ignore": "456"}
+ * stringToJSON("{ test : "Bonjour", ignore : 456}");
+ *
+ * @param {string} source - The string to be modified.
+ *
+ * @returns {string} Returns a modified string with JSON quotes.
+ */
+const stringToJSON = (source: string): string => {
+  let convertedString = `${source}`;
+  const simpleWordRegexp = new RegExp(/(\w+):|(\w+) :/, "g");
+  if (simpleWordRegexp.test(source)) {
+    convertedString = convertedString.replace(simpleWordRegexp, '"$1$2":');
+  }
+
+  const quotedVariableRegexp = new RegExp(/'(\w+)':|'(\w+)' :/, "g");
+  if (quotedVariableRegexp.test(source)) {
+    convertedString = convertedString.replace(quotedVariableRegexp, '"$1$2":');
+  }
+
+  const quotedValueRegexp = new RegExp(/'(\w+)'(,|}|\r\n|\r|\n)/, "g");
+  if (quotedValueRegexp.test(source)) {
+    convertedString = convertedString.replace(quotedValueRegexp, '"$1"$2');
+  }
+
+  const trailingCommaRegexp = new RegExp(/(,)( |\r\n|\r|\n)*(]|})/, "g");
+  if (trailingCommaRegexp.test(source)) {
+    convertedString = convertedString.replace(trailingCommaRegexp, "$2$3");
+  }
+
+  return convertedString;
+};
+
+/**
+ * Translate a string in lorrain by parsing it's content before appliying the given options.
+ *
+ * @example <caption>Example usage with an object in string.</caption>
+ * // returns { test : "Bonjour gros", ignore : 456}
+ * translate("{ test : "Bonjour", ignore : 456}");
+ *
+ * @example <caption>Example usage with a JSON in string.</caption>
+ * // returns { test : "Bonjour gros", ignore : 456}
+ * translate('{ "test" : "Bonjour", "ignore" : 456}');
+ *
+ * @example <caption>Example usage with a number in string.</caption>
+ * // returns 456.12
+ * translate("456.12");
+ *
+ * @param {string} source - The string to be parsed and translated.
+ * @param {TranslationOptions} options - The options activated for this translation. By default, all are activated.
+ *
+ * @returns {TranlationObject} Returns a translated object of the correct type.
+ */
+export const parseTranslate = (
+  source: string,
+  options: TranslationOptions = DEFAULT_OPTIONS
+): TranlationObject => {
+  try {
+    const jsonString = stringToJSON(source);
+    const parsedSource = JSON.parse(jsonString);
+
+    return translate(parsedSource, options);
+  } catch (error) {
+    return translate(source, options);
+  }
 };
 
 /**
