@@ -52,7 +52,7 @@ export const applyTranslateByType = (
   return source;
 };
 
-export { setMirabelle } from "./setMirabelle";
-export { setLe } from "./setLe";
-export { setGros } from "./setGros";
-export { setO } from "./setO";
+export * from "./setMirabelle";
+export * from "./setLe";
+export * from "./setGros";
+export * from "./setO";
